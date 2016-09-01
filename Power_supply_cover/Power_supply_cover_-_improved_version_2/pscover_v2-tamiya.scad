@@ -22,8 +22,8 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 // power supply dimensions
-psw = 113.5;// width fo power supply
-psh = 49; // height of power supply
+psw = 114;// width fo power supply
+psh = 50; // height of power supply
 psd = 19; // depth inside power supply
 psa = 2.0;// thickness of alu sheets
 psb = 9;  // thickness of ps bottom
@@ -66,7 +66,7 @@ vds = 28; // screw base
 vdx = psw/4-5; //lcd x-position
 
 //
-exd = 21; // extruding depth behind power supply
+exd = 40; // extruding depth behind power supply
 wall = 3; // wall thickness
 m4 = 4.2;  // screw diameter
 m3 = 3.2;  // screw diameter
@@ -247,7 +247,7 @@ module cutout_cover(){
 //translate([90,140,30])rotate(180)pscover(supports=false);
 
 //translate([0,-50,0])color("blue")rotate(90,[1,0,0]) pscover();
-rotate(90,[1,0,0]) pscover(supports=true,tamiya=true);
+rotate(90,[1,0,0]) pscover(supports=false,tamiya=true);
 translate([0,50,-tyd]) rotate(90,[1,0,0]) tamiya_frame();
 
 //cutout_cover();
