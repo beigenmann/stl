@@ -37,15 +37,15 @@ mox = 0;  // position of molex sockets
 mon = 3;   // number of molex slots
 
 //tamiya female plug dimensions
-tyw = 13.7; // width of tamiya socket
-tyh = 7.5; // height of tamiya socket
+tyw = 32; // width of tamiya socket
+tyh = 17; // height of tamiya socket
 tyH = 10; // height of tamiya socket
-tyc = 1.5;   // extra height of clip
+tyc = 0;   // extra height of clip
 tyd = 3;  // depth of tamiya in case
-tyD = 5;  // depth of tamiya in case
+tyD = 30;  // depth of tamiya in case
 tyb = 1.5; // height of brims
 tyx = 0;  // position of tamiya sockets
-tyn = 3;   // number of tamiya slots
+tyn = 1;   // number of tamiya slots
 
 // ac socket dimensions
 act = 50;  // total width of ac socket
@@ -86,20 +86,20 @@ module pscover(supports=true, tamiya=false){
 
       // ac socket screw hubs
       translate([psw-wall-act/2,0,psh-1.5*wall-ach/2])
-      for(x=[-acs/2,acs/2])translate([x,0,0])rotate(-90,[1,0,0])cylinder(r=5, wall+2);
-
-      if(!tamiya){
-         // molex frames
-         for(n=[0:mon-1]){
-         translate([2*wall+mox-wall+n*(wall+mow),0,psh-4*wall-ach/2-moh/2])cube([mow+2*wall,mod,moh+2*wall]);
-         //%color("blue")translate([2*wall+mox-wall+n*(wall+mow)+mow/2+1.5+3.5,mod+6+(n==0?16:0),psh-4*wall-ach/2-6])rotate([90,0,-90])clip();
-         }
-      }else{
-         // tamiya frames
-         for(n=[0:tyn-1]){
-         translate([2.5*wall+tyx-wall+n*(wall/2+tyw),0,psh-4*wall-ach/2-tyh/2])cube([tyw+2*wall,tyd,tyh+2*wall]);
-         }
-      }
+//      for(x=[-acs/2,acs/2])translate([x,0,0])rotate(-90,[1,0,0])cylinder(r=5, wall+2);
+//
+//      if(!tamiya){
+//         // molex frames
+//         for(n=[0:mon-1]){
+//         translate([2*wall+mox-wall+n*(wall+mow),0,psh-4*wall-ach/2-moh/2])cube([mow+2*wall,mod,moh+2*wall]);
+//         //%color("blue")translate([2*wall+mox-wall+n*(wall+mow)+mow/2+1.5+3.5,mod+6+(n==0?16:0),psh-4*wall-ach/2-6])rotate([90,0,-90])clip();
+//         }
+//      }else{
+//         // tamiya frames
+//         for(n=[0:tyn-1]){
+//        translate([2.5*wall+tyx-wall+n*(wall/2+tyw),0,psh-4*wall-ach/2-tyh/2+5 ])cube([tyw*wall,tyd,tyh+3*wall]);
+//         }
+//      }
 
       // lcd display support and voltage trimpot support
       for(x=[0,vds,2*vds-vdw+7])
@@ -128,9 +128,27 @@ module pscover(supports=true, tamiya=false){
       translate([3.0*wall+tyx-3*wall-1,tyd+tyD/2,psh-4*wall-ach/2-tyh/2-3])
           rotate([0,90,0])cylinder(r=m3/2,h=4*wall);
       translate([3.0*wall+tyx-3*wall-1,tyd+tyD/2,psh-2*wall-ach/2+tyh/2+3])
-          rotate([0,90,0])cylinder(r=m3/2,h=4*wall);
-      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3,-wall-1,psh-2*wall-tyh/2-ach/2])
+              rotate([0,90,0])cylinder(r=m3/2,h=4*wall);
+      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3+18,-wall-1 ,psh-2*wall-tyh/2-ach/2 +5])
           rotate([-90,0,0])cylinder(r=m3/2,h=3*wall);
+//      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3,-wall-1,psh-2*wall-tyh/2-ach/2])
+//          rotate([-90,0,0])cylinder(r=m3/2,h=4*wall);
+      for(n=[0:2]){
+           if(n != 1){
+        translate([4*wall+tyx-wall+tyn*(wall/2+tyw)+4,-wall-10 ,psh-5*wall-tyh/2-ach/2-2 + n*12 ])
+          rotate([-90,0,0])cylinder(r=11/2,h=20*wall);
+           }
+           else{
+               translate([4*wall+tyx-wall+tyn*(wall/2+tyw)+4,-wall-10 ,psh-5*wall-tyh/2-ach/2-2 + n*12 ])
+          rotate([-90,0,0])cylinder(r=4/2,h=20*wall);
+           }
+      }
+      for(n=[0:2]){
+          if(n != 1){
+        translate([4.5*wall+tyx-wall+tyn*(wall/2+tyw)+14,-wall-10 ,psh-5*wall-tyh/2-ach/2-2 + n*12 ])
+          rotate([-90,0,0])cylinder(r=11/2,h=20*wall);
+          }
+      }
     }
       // ac socket cutout
       translate([psw-wall-act/2,0,psh-1.5*wall-ach/2]){
@@ -163,13 +181,13 @@ module pscover(supports=true, tamiya=false){
       translate([psw/2,exd+6.5,psh/2])for(s=[-1,1])scale([s,1,1])translate([psw/2-wall-psa-2,0,0])rotate(90,[0,1,0])cylinder(r=5.5/2/cos(30),h=psa+1,$fn=6);
 
       // air flow grid
-      for(z = [wall/2:6:15])translate([2*wall,-1,wall+z])cube([psw-4*wall,1+wall/2,3]);
-      for(x = [2*wall+0.3:6:psw-2*wall])translate([x,wall/2-0.01,wall])cube([3,1+wall/2,18]);
+      for(z = [wall/2:6:15])translate([psw/2+3*wall,-1,wall+z])cube([psw/2-5*wall,1+wall/2,3]);
+      for(x = [psw/2+3*wall:6:psw-2*wall])translate([x,wall/2-0.01,wall])cube([3,1+wall/2,18]);
 
       //  anti-warping grooves
-      for(x = [8:20:psw-5]) translate([x,wall,wall/2])cube([1.5,exd-wall-2,wall]);
+     // for(x = [8:20:psw-5]) translate([x,wall,wall/2])cube([1.5,exd-wall-2,wall]);
       for(x = [8,52,85,105]) translate([x,wall,psh-wall-1])cube([1.5,exd+psd-wall-2,wall/2+1]);
-      //for(x = [18:20:psw-5]) translate([x,wall/2,psh/2])cube([1.5,wall/2+1,psh/2-wall]);
+      for(x = [18:20:psw-5]) translate([x,wall/2,psh/2])cube([1.5,wall/2+1,psh/2-wall]);
   }
 
   //  explicit bridge support for lcd display cutout (cut away after printing)
@@ -194,25 +212,42 @@ module tamiya_frame(tyn=tyn){
    translate([0,tyd,0])difference(){
      union(){
        for(n=[0:tyn-1])
-         translate([3.0*wall+tyx-wall+n*(wall/2+tyw),0,psh-4*wall-ach/2-tyh/2])
-	     cube([tyw+wall,tyD,tyh+2*wall]);
+       translate([3.0*wall+tyx-wall+n*(wall/2+tyw),0,psh-4*wall-ach/2-tyh/2 -15])
+	     cube([tyw+wall,tyD,2*tyh]);
        translate([3.0*wall+tyx-wall,0,psh-4*wall-ach/2-tyh/2-6])
           cube([wall/2,tyD,tyh+2*wall+12]);
-       translate([3.0*wall+tyx-wall+tyn*(wall/2+tyw),0,psh-4*wall-ach/2-tyh/2])
-          cube([6+wall/2,wall/2,tyh+2*wall]);
+      translate([3*wall+tyx-wall+tyn*(wall/2+tyw),0,psh-4*wall-ach-tyh -1])
+          cube([23+wall/2,wall/2,3*tyh-5]);
      }
      for(n=[0:tyn-1]){
-        translate([2.5*wall+tyx+n*(wall/2+tyw),-1,psh-3*wall-ach/2-tyh/2])cube([tyw,tyD+2,tyh]);
+        translate([2.5*wall+tyx+n*(wall/2+tyw),-2,psh-3*wall-tyh])cube([tyw,tyD+8,2*tyh]);
         //translate([2.5*wall+tyx+n*(wall/2+tyw),tyD-tyb,psh-3*wall-ach/2-tyH/2])cube([tyw,tyb+1,tyH]);
-        translate([2.5*wall+tyx+n*(wall/2+tyw),-1,psh-3*wall-ach/2-tyH/2])cube([tyw,tyb+1,tyH]);
+       translate([2.5*wall+tyx+n*(wall/2+tyw),-2,psh-3*wall-tyh-22])cube([tyw,tyD+8,tyh]);
       } 
       // holes for Tamiya clamp
-      translate([3.0*wall+tyx-wall-1,tyD/2,psh-4*wall-ach/2-tyh/2-3])
+     translate([3.0*wall+tyx-wall-1,tyD/2,psh-4*wall-ach/2-tyh/2-3])
           rotate([0,90,0])cylinder(r=m3/2,h=3*wall);
       translate([3.0*wall+tyx-wall-1,tyD/2,psh-2*wall-ach/2+tyh/2+3])
           rotate([0,90,0])cylinder(r=m3/2,h=3*wall);
-      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3,-wall-1,psh-2*wall-tyh/2-ach/2])
+      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3+18,-wall-1 ,psh-2*wall-tyh/2-ach/2 +5])
           rotate([-90,0,0])cylinder(r=m3/2,h=3*wall);
+      for(n=[0:2]){
+          if(n != 1){
+        translate([4*wall+tyx-wall+tyn*(wall/2+tyw)+4,-wall-10 ,psh-5*wall-tyh/2-ach/2-2 + n*12 ])
+          rotate([-90,0,0])cylinder(r=7/2,h=20*wall);
+          }
+          else{
+              translate([4*wall+tyx-wall+tyn*(wall/2+tyw)+4,-wall-10 ,psh-5*wall-tyh/2-ach/2-2 + n*12 ])
+          rotate([-90,0,0])cylinder(r=4/2,h=20*wall);
+          }
+        
+      }
+      for(n=[0:2]){
+          if(n != 1){
+        translate([4.5*wall+tyx-wall+tyn*(wall/2+tyw)+14,-wall-10 ,psh-5*wall-tyh/2-ach/2-2 + n*12 ])
+          rotate([-90,0,0])cylinder(r=7/2,h=20*wall);
+          }
+      }
    }
 }
 

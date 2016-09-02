@@ -37,15 +37,15 @@ mox = 0;  // position of molex sockets
 mon = 3;   // number of molex slots
 
 //tamiya female plug dimensions
-tyw = 13.7; // width of tamiya socket
-tyh = 7.5; // height of tamiya socket
+tyw = 32; // width of tamiya socket
+tyh = 17; // height of tamiya socket
 tyH = 10; // height of tamiya socket
-tyc = 1.5;   // extra height of clip
+tyc = 0;   // extra height of clip
 tyd = 3;  // depth of tamiya in case
-tyD = 5;  // depth of tamiya in case
+tyD = 36;  // depth of tamiya in case
 tyb = 1.5; // height of brims
 tyx = 0;  // position of tamiya sockets
-tyn = 3;   // number of tamiya slots
+tyn = 1;   // number of tamiya slots
 
 // ac socket dimensions
 act = 50;  // total width of ac socket
@@ -55,18 +55,18 @@ acs = 40;  // screw distance of ac socket
 acc = 8;   // corner length
 
 // ac switch
-sww = 13.5;  // switch width
-swh = 9;   // switch height
+sww = 20;  // switch width
+swh = 13;   // switch height
 
 // lcd voltage display
-vdw = 23; // width
-vdh = 14.5; // height
+vdw = 46; // width
+vdh = 28; // height
 vdd = 6;  // depth
 vds = 28; // screw base
 vdx = psw/4-5; //lcd x-position
 
 //
-exd = 40; // extruding depth behind power supply
+exd = 50; // extruding depth behind power supply
 wall = 3; // wall thickness
 m4 = 4.2;  // screw diameter
 m3 = 3.2;  // screw diameter
