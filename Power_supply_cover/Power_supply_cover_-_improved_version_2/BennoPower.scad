@@ -125,11 +125,13 @@ module pscover(supports=true, tamiya=false){
         translate([2.5*wall+tyx+n*(wall/2+tyw)+tyw/2-2,2*wall+10,psh-3*wall-ach/2-tyh/2-5])cube([4,5,tyh+10]);
       } 
       // holes for Tamiya clamp
-      translate([3.0*wall+tyx-3*wall-1,tyd+tyD/2,psh-4*wall-ach/2-tyh/2-3])
-          rotate([0,90,0])cylinder(r=m3/2,h=4*wall);
-      translate([3.0*wall+tyx-3*wall-1,tyd+tyD/2,psh-2*wall-ach/2+tyh/2+3])
+ 
+      translate([3.0*wall+tyx-3*wall-1,tyd+tyD/2,psh-4*wall-ach/2-tyh/2-10])
+          rotate([0,90,0])cylinder(r=m3/2,h=4*wall);    
+     translate([3.0*wall+tyx-3*wall-1,tyd+tyD/2,psh-2*wall-ach/2+tyh/2])
               rotate([0,90,0])cylinder(r=m3/2,h=4*wall);
-      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3+18,-wall-1 ,psh-2*wall-tyh/2-ach/2 +5])
+      // translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3+18,-wall-1 ,psh-2*wall-tyh/2-ach/2 ])
+      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+20,-wall-1 ,psh-2*wall-tyh/2-ach/2+1])
           rotate([-90,0,0])cylinder(r=m3/2,h=3*wall);
 //      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3,-wall-1,psh-2*wall-tyh/2-ach/2])
 //          rotate([-90,0,0])cylinder(r=m3/2,h=4*wall);
@@ -151,7 +153,7 @@ module pscover(supports=true, tamiya=false){
       }
     }
       // ac socket cutout
-      translate([psw-wall-act/2,0,psh-1.5*wall-ach/2]){
+      translate([psw-wall-act/2,0,psh-1.5*wall-ach/2-2]){
          for(x=[-acs/2,acs/2])translate([x,-1,0])rotate(-90,[1,0,0])cylinder(r=m3/2, wall+2);
          for(x=[-acs/2,acs/2])translate([x,wall,0])rotate(-90,[1,0,0])cylinder(r=5.5/2/cos(30), wall+2,$fn=6);
 	 hull(){
@@ -214,8 +216,9 @@ module tamiya_frame(tyn=tyn){
        for(n=[0:tyn-1])
        translate([3.0*wall+tyx-wall+n*(wall/2+tyw),0,psh-4*wall-ach/2-tyh/2 -15])
 	     cube([tyw+wall,tyD,2*tyh]);
-       translate([3.0*wall+tyx-wall,0,psh-4*wall-ach/2-tyh/2-6])
+       translate([3.0*wall+tyx-wall,0,psh-4*wall-ach/2-tyh/2-8])
           cube([wall/2,tyD,tyh+2*wall+12]);
+       
       translate([3*wall+tyx-wall+tyn*(wall/2+tyw),0,psh-4*wall-ach-tyh -1])
           cube([23+wall/2,wall/2,3*tyh-5]);
      }
@@ -225,11 +228,11 @@ module tamiya_frame(tyn=tyn){
        translate([2.5*wall+tyx+n*(wall/2+tyw),-2,psh-3*wall-tyh-22])cube([tyw,tyD+8,tyh]);
       } 
       // holes for Tamiya clamp
-     translate([3.0*wall+tyx-wall-1,tyD/2,psh-4*wall-ach/2-tyh/2-3])
+     translate([3.0*wall+tyx-wall-1,tyD/2,psh-4*wall-ach/2-tyh/2-10])
           rotate([0,90,0])cylinder(r=m3/2,h=3*wall);
-      translate([3.0*wall+tyx-wall-1,tyD/2,psh-2*wall-ach/2+tyh/2+3])
+     translate([3.0*wall+tyx-wall-1,tyD/2,psh-2*wall-ach/2+tyh/2])
           rotate([0,90,0])cylinder(r=m3/2,h=3*wall);
-      translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+3+18,-wall-1 ,psh-2*wall-tyh/2-ach/2 +5])
+     translate([3.5*wall+tyx-wall+tyn*(wall/2+tyw)+20,-wall-1 ,psh-2*wall-tyh/2-ach/2+1 ])
           rotate([-90,0,0])cylinder(r=m3/2,h=3*wall);
       for(n=[0:2]){
           if(n != 1){
