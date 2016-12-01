@@ -1,0 +1,1 @@
+surface(file = "FC_St._Gallen_logo.png", center = true, invert = true);
